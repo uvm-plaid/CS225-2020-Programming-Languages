@@ -29,4 +29,6 @@ let fact n = if n = 0 then 1 else n * (fact (n-1));;    (* sugared form *)
 let pi = 3.14;;
 let area r = 2.0 *. pi *. r *. r;;   (* area is a closure, references non-local pi *)
 
+let area = let pi = 3.14 in (fun r ->  2.0 *. pi *. r *. r);;   (* somewhat more elegant *) 
+
 let pi = 12345.5 in area 2.0;;    (* illustrates closure semantics *)
