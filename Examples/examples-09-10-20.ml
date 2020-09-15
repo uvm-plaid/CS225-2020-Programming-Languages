@@ -32,3 +32,10 @@ let area r = 2.0 *. pi *. r *. r;;   (* area is a closure, references non-local 
 let area = let pi = 3.14 in (fun r ->  2.0 *. pi *. r *. r);;   (* somewhat more elegant *) 
 
 let pi = 12345.5 in area 2.0;;    (* illustrates closure semantics *)
+
+let rec omega (x : bool) : bool = omega x;;   (* non terminating function *)
+
+false && omega true       (* exposes left to right evlauation with short circuiting *)
+
+(fun (x : bool) -> 0)(omega true)    (* exposes eager evaluation *)
+
