@@ -1,32 +1,32 @@
 Group 1 
 -------
-Brown, Anthony R.
-Cafiero, Clayton B.
+Brown, Anthony R.     (captain)
+Cafiero, Clayton B.     (vice-captain)
 Martin, Dakota L.
 Beatty, Luke C.
 
 Group 2
 -------
-Campbell, Jason M.
-Farrell, Alex A.
+Campbell, Jason M.     (captain)
+Farrell, Alex A.     (vice-captain)
 Niccolai, Patrick M.
 Manian, Rahavee RV
 
 Group 3
 -------
-Cosgrove, Sean M.
-Zhang, Ken
+Cosgrove, Sean M.     (captain)
+Zhang, Ken     (vice-captain)
 Urbani, Johnathan C.
 Lee, Brandon J.
 
 Group 4
 -------
-Beattie, Robby M.
-Zuver, Joshua D.
+Beattie, Robby M.     (captain)
+Zuver, Joshua D.     (vice-captain)
 Putnam, James C.
 
 Group 5
 -------
-Backus, Noah J.
-Bates, Mako P.
+Backus, Noah J.     (captain)
+Bates, Mako P.     (vice-captain)
 Baldasty, Steven
