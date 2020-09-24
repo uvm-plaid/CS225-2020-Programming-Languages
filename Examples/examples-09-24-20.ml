@@ -37,6 +37,8 @@ let graph = [(1.1,3.7);(6.2,9.4);(5.5,3.8)];;
 
 let xcoords l = map (fun (x,y) -> y) l;;
 
+(* fold s b [v1,...vn] = s(v1, s(v2, ... s(v1,b) ...)) *)
+
 let rec fold s b l = 
   match l with 
      [] -> b
