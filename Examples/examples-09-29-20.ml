@@ -20,7 +20,7 @@ let rec fibnum_mem n =
   let rec fm n = match n with
     0 -> 0
   | 1 -> 1 
-  | n -> if tab.(n) > 0 then tab.(n) else let fn = fm (n-1) + fm (n-2) in (tab.(n) <- fn; fn)
+  | _ -> if tab.(n) > 0 then tab.(n) else let fn = fm (n-1) + fm (n-2) in (tab.(n) <- fn; fn)
 in fm n;;
 
 exception Negative;;
