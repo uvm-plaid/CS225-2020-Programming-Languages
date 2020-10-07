@@ -9,7 +9,7 @@ let rec redx exp = match exp with
    | Or(Bool(true), Bool(_)) -> Bool(true)
    | Or(Bool(false), Bool(false)) -> Bool(false)
    | Or(Bool(false), Bool(true)) -> Bool(true)
-   | Not(e) -> redx e
+   | Not(e) -> Not(redx e)
    | And(Bool(b),e) -> And(Bool(b), redx e)
    | And(e1,e2) -> And(redx e1, e2)
    | Or(Bool(b),e) -> And(Bool(b), redx e)
