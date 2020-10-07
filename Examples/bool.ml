@@ -12,8 +12,8 @@ let rec redx exp = match exp with
    | Not(e) -> Not(redx e)
    | And(Bool(b),e) -> And(Bool(b), redx e)
    | And(e1,e2) -> And(redx e1, e2)
-   | Or(Bool(b),e) -> And(Bool(b), redx e)
-   | Or(e1,e2) -> And(redx e1, e2);;
+   | Or(Bool(b),e) -> Or(Bool(b), redx e)
+   | Or(e1,e2) -> Or(redx e1, e2);;
    
 let rec redxs exp = match exp with 
       Bool(b) -> Bool(b)
