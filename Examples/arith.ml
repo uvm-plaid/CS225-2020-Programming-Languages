@@ -80,7 +80,7 @@ let rec prettyPrint e = match e with
    | Or (e1, e2) -> "(" ^ (prettyPrint e1) ^ " Or " ^ (prettyPrint e2) ^ ")"
    | Not e1 -> "(Not " ^ (prettyPrint e1) ^ ")"
    | Plus (e1, e2) -> "(" ^ (prettyPrint e1) ^ " + " ^ (prettyPrint e2) ^ ")"
-   | Minus (e1, e2) -> "(" ^ (prettyPrint e1) ^ " * " ^ (prettyPrint e2) ^ ")"
+   | Minus (e1, e2) -> "(" ^ (prettyPrint e1) ^ " - " ^ (prettyPrint e2) ^ ")"
    | Equal (e1, e2) -> "(" ^ (prettyPrint e1) ^ " = " ^ (prettyPrint e2) ^ ")"
 
 (*
