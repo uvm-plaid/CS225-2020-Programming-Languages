@@ -3,22 +3,16 @@
 
 (* Summation using Z *)
 Let zcomb = (Fun f . (Fun x . f (Fun v . (x x) v)) (Fun x . f (Fun v . (x x) v))) In
-Let summate = (Fun summate . Fun n . If n = 0 Then 0 Else n + (summate (n - 1))) In
-(zcomb summate) 5
+Let s = (Fun summate . Fun n . If n = 0 Then 0 Else n + (summate (n - 1))) In
+(zcomb s) 5
 
 (* Multiplication as the iteration of addition using Z *)
 Let zcomb = (Fun f . (Fun x . f (Fun v . (x x) v)) (Fun x . f (Fun v . (x x) v))) In
-Let mult = 
- (Fun x . Fun y . 
-    Let m = (Fun m . Fun i . If i = 0 Then 0 Else y + (m (i - 1))) In 
-    (zcomb m) x) In
-(mult 6) 9
+Let m = (Fun mult . Fun x . Fun y . If y = 0 Then 0 Else x + ((mult x) (y - 1))) In
+((zcomb m) 6) 9
 
 (* Factorial using Z *)
 Let zcomb = (Fun f . (Fun x . f (Fun v . (x x) v)) (Fun x . f (Fun v . (x x) v))) In
-Let mult = 
- (Fun x . Fun y . 
-    Let m = (Fun m . Fun i . If i = 0 Then 0 Else y + (m (i - 1))) In 
-    (zcomb m) x) In
-Let factorial = (Fun fact . Fun n . If n = 0 Then 1 Else (mult n) (fact (n - 1))) In 
-(zcomb factorial) 4
+Let mult = zcomb (Fun mult . Fun x . Fun y . If y = 0 Then 0 Else x + ((mult x) (y - 1))) In
+Let f = (Fun fact . Fun n . If n = 0 Then 1 Else (mult n) (fact (n - 1))) In 
+(zcomb f) 6
