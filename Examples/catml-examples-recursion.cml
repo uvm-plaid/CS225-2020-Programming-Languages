@@ -1,3 +1,11 @@
+(* Omega *)
+ 
+(Fun x . x x) (Fun x . x x)
+
+(* The Y Combinator: Lazy fixed-point combinator, not useful for CatML *)
+
+(Fun f . (Fun x . f (x x)) (Fun x . f (x x)))
+
 (* The Z combinator: Eager fixed-point combinator for CatML *)
 (Fun f . (Fun x . f (Fun v . (x x) v)) (Fun x . f (Fun v . (x x) v)))
 
