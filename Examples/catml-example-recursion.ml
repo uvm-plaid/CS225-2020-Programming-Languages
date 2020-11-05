@@ -1,3 +1,175 @@
+(*
+  Omega
+ 
+  (Fun x . x x) (Fun x . x x)
+*)
+
+let omega =
+Appl (
+  Function (
+    Ident "x",
+    Appl (
+      Var (
+        Ident "x"
+      ),
+      Var (
+        Ident "x"
+      )
+    )
+  ),
+  Function (
+    Ident "x",
+    Appl (
+      Var (
+        Ident "x"
+      ),
+      Var (
+        Ident "x"
+      )
+    )
+  )
+ );;
+
+(*
+  The Y Combinator
+
+  (Fun f . (Fun x . f (x x)) (Fun x . f (x x)))
+*)
+
+let ycomb = 
+Function (
+  Ident "f",
+  Appl (
+    Function (
+      Ident "x",
+      Appl (
+        Var (
+          Ident "f"
+        ),
+        Appl (
+          Var (
+            Ident "x"
+          ),
+          Var (
+            Ident "x"
+          )
+        )
+      )
+    ),
+    Function (
+      Ident "x",
+      Appl (
+        Var (
+          Ident "f"
+        ),
+        Appl (
+          Var (
+            Ident "x"
+          ),
+          Var (
+            Ident "x"
+          )
+        )
+      )
+    )
+  )
+);;
+
+(* 
+  Summation using Y
+  
+  Let ycomb = (Fun f . (Fun x . f (x x)) (Fun x . f (x x))) In 
+  Let s = (Fun summate . Fun n . If n = 0 Then 0 Else n + (summate (n - 1))) In
+  (ycomb s) 5
+*)
+
+let ysumexmp =
+Let (
+  Ident "ycomb",
+  Function (
+    Ident "f",
+    Appl (
+      Function (
+        Ident "x",
+        Appl (
+          Var (
+            Ident "f"
+          ),
+          Appl (
+            Var (
+              Ident "x"
+            ),
+            Var (
+              Ident "x"
+            )
+          )
+        )
+      ),
+      Function (
+        Ident "x",
+        Appl (
+          Var (
+            Ident "f"
+          ),
+          Appl (
+            Var (
+              Ident "x"
+            ),
+            Var (
+              Ident "x"
+            )
+          )
+        )
+      )
+    )
+  ),
+  Let (
+    Ident "s",
+    Function (
+      Ident "summate",
+      Function (
+        Ident "n",
+        If (
+          Equal (
+            Var (
+              Ident "n"
+            ),
+            Nat 0
+          ),
+          Nat 0,
+          Plus (
+            Var (
+              Ident "n"
+            ),
+            Appl (
+              Var (
+                Ident "summate"
+              ),
+              Minus (
+                Var (
+                  Ident "n"
+                ),
+                Nat 1
+              )
+            )
+          )
+        )
+      )
+    ),
+    Appl (
+      Appl (
+        Var (
+          Ident "ycomb"
+        ),
+        Var (
+          Ident "s"
+        )
+      ),
+      Nat 5
+    )
+  )
+);;
+
 (* 
   The Z combinator: Eager fixed-point combinator for CatML 
   
