@@ -302,6 +302,7 @@ Let (
   (zcomb f) 6
 *)
 
+let factexmp = 
 Let (
   Ident "zcomb",
   Function (
