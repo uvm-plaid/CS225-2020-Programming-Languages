@@ -30,5 +30,5 @@ Let summate = (Fix summate . n . If n = 0 Then 0 Else (n + summate (n-1))) In
 summate 6
 
 (* Naive fibonacci using primitive Fix *)
-Let fib = (Fix fib . n . If n = 0 Then 1 Else If n = 1 Then 1 Else (fib (n-1)) + (fib (n-2))) In 
+Let fib = (Fix fib . n . If n = 0 Then 0 Else If n = 1 Then 1 Else (fib (n-1)) + (fib (n-2))) In 
 fib 6
