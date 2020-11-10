@@ -24,3 +24,11 @@ Let zcomb = (Fun f . (Fun x . f (Fun v . (x x) v)) (Fun x . f (Fun v . (x x) v))
 Let mult = zcomb (Fun mult . Fun x . Fun y . If y = 0 Then 0 Else x + ((mult x) (y - 1))) In
 Let f = (Fun fact . Fun n . If n = 0 Then 1 Else (mult n) (fact (n - 1))) In 
 (zcomb f) 6
+
+(* Summation using primitive Fix *)
+Let summate = (Fix summate . n . If n = 0 Then 0 Else (n + summate (n-1))) In 
+summate 6
+
+(* Naive fibonacci using primitive Fix *)
+Let fib = (Fix fib . n . If n = 0 Then 1 Else If n = 1 Then 1 Else (fib (n-1)) + (fib (n-2))) In 
+fib 6
