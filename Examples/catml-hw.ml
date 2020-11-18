@@ -67,7 +67,7 @@ exception AssignmentIncomplete
 
    Note: List.mem can be used to check whether a given value occurs in a list.
    
-   closed : Dast.expr -> Dast.ident list -> bool
+   closed : expr -> ident list -> bool
    in : an expression e and an identifier list ilist
    out : true iff e is closed, assuming every element of ilist is 
          a bound variable
@@ -81,7 +81,7 @@ let rec closed e ident_list = raise AssignmentIncomplete (* COMPLETE ME *)
    We implement substitution as defined symbolically, to obtain a substution-based
    semantics in the interpreter.
   
-   subst : Dast.expr -> Dast.expr -> Dast.ident -> Dast.expr
+   subst : expr -> expr -> ident -> expr
    in : expression e1, expression e2, identifier id
    out : e1[e2/id] 
 *)
@@ -165,6 +165,13 @@ let rec prettyPrint e = match e with
    | Fix(Ident(z), Ident(x), e) -> "(Fix " ^ z ^ " . " ^ x ^ " . " ^ (prettyPrint e) ^ ")"
    | Let(Ident(x), e1, e2) -> "Let " ^ x ^ " = " ^ (prettyPrint e1) ^ " In\n" ^ (prettyPrint e2)
    | Appl(e1, e2) -> (prettyPrint e1) ^ " " ^ (prettyPrint e2)
+   | Pair(e1, e2) -> "(" ^ (prettyPrint e1) ^ ", " ^ (prettyPrint e2) ^ ")"
+   | Fst(e1) -> 
+      (match e1 with Pair(_) -> "Fst" ^  (prettyPrint e1) 
+                  | _ ->  "Fst(" ^  (prettyPrint e1) ^ ")")
+   | Snd(e1) -> 
+      (match e1 with Pair(_) -> "Snd" ^  (prettyPrint e1) 
+                  | _ ->  "Snd(" ^  (prettyPrint e1) ^ ")")
 
 
 exception NotClosed
