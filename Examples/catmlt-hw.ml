@@ -23,6 +23,7 @@
 
    [[Nat]] = Natt
    [[Bool]] = Boolt
+   [[tau_1 * tau_2]] = Prod([tau_1]], [[tau_2]])
    [[tau_1 -> tau_2]] = Arrow([[tau_1]], [[tau_2]])
    
    The expr datatype defines the ASTs for CatML_tau expressions. The mapping from concrete syntax
@@ -50,7 +51,7 @@
 type ident = Ident of string
 
 (* type syntax *)
-type tau = Natt | Boolt | Arrow of tau * tau 
+type tau = Natt | Boolt | Prod of tau * tau | Arrow of tau * tau 
 
 (* expression syntax *)
 type expr =
@@ -126,6 +127,7 @@ let typing e = typecheck [] e
 let rec pptau = function
     Natt -> "Nat"
   | Boolt -> "Bool"
+  | Prod(t1,t2) -> "(" ^ pptau t1 ^ ", " ^ pptau t2 ^ ")"
   | Arrow(t1,t2) -> "(" ^ pptau t1 ^ " -> " ^ pptau t2 ^ ")"
 
 (*
