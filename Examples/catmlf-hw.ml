@@ -23,9 +23,10 @@
 
    [[Nat]] = Natt
    [[Bool]] = Boolt
+   [[tau_1 * tau_2]] = Prod([tau_1]], [[tau_2]])
    [[tau_1 -> tau_2]] = Arrow([[tau_1]], [[tau_2]])
-   [[X]] = TVar(Ident("X"))
-   [[V X . tau]] = Forall(Ident("X"), [[tau]])
+   [['a]] = TVar(Ident("'a"))
+   [[V 'a . tau]] = Forall(Ident("'a"), [[tau]])
    
    The expr datatype defines the ASTs for CatML_forall expressions. The mapping from concrete syntax
    to abstract syntax is as follows, in full detail. This mapping is implemented by the
@@ -47,14 +48,15 @@
    [[Let x = e1 in e2]] = Let(Ident("x"), [[e1]], [[e2]])
    [[(Fun (x : tau) . e)]] = Fun(Ident("x"), [[tau]], [[e]])
    [[(Fix z . (x : tau_1) : tau_2 . e)]] = Fix(Ident("z"), Ident("x"), [[tau_1]], [[tau_2]], [[e]])
-   [[(Gen X . e)]] = Gen(Ident("X"), [[e]])
+   [[(Gen 'a . e)]] = Gen(Ident("'a"), [[e]])
    [[e<tau>]] = Inst([[e]], [[tau]])
 *)
 
 type ident = Ident of string
 
 (* type syntax *)
-type tau = Natt | Boolt | Arrow of tau * tau | TVar of ident | Forall of ident * tau 
+type tau = Natt | Boolt | Prod of tau * tau | Arrow of tau * tau |
+           TVar of ident | Forall of ident * tau 
 
 (* expression syntax *)
 type expr =
@@ -132,6 +134,7 @@ let typing e = typecheck [] e
 let rec pptau = function
     Natt -> "Nat"
   | Boolt -> "Bool"
+  | Prod(t1,t2) -> "(" ^ pptau t1 ^ ", " ^ pptau t2 ^ ")"
   | Arrow(t1,t2) -> "(" ^ pptau t1 ^ " -> " ^ pptau t2 ^ ")"
   | Forall(Ident(x), t) -> "V " ^ x ^ " . " ^ pptau t
   | TVar(Ident(x)) -> x
