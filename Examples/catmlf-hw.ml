@@ -134,7 +134,7 @@ let typing e = typecheck [] e
 let rec pptau = function
     Natt -> "Nat"
   | Boolt -> "Bool"
-  | Prod(t1,t2) -> "(" ^ pptau t1 ^ ", " ^ pptau t2 ^ ")"
+  | Prod(t1,t2) -> "(" ^ pptau t1 ^ " * " ^ pptau t2 ^ ")"
   | Arrow(t1,t2) -> "(" ^ pptau t1 ^ " -> " ^ pptau t2 ^ ")"
   | Forall(Ident(x), t) -> "V " ^ x ^ " . " ^ pptau t
   | TVar(Ident(x)) -> x
